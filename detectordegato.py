@@ -19,6 +19,7 @@ consumo.automf(3)
 tarifa.automf(3)
 gasto.automf(3)
 
+#CRIANDO AS VIEW DAS VARIÁVEIS DE ENTRADA
 consumo.view()
 tarifa.view()
 gasto.view()
@@ -42,16 +43,17 @@ regra2.view()
 regra3.view()
 
 """
-
+#VERIFICANDO AS REGRAS
 resultado_ctrl = ctrl.ControlSystem([regra1, regra2, regra3])
 valorresultado = ctrl.ControlSystemSimulation(resultado_ctrl)
 
-input_consumo = float(input("Digite o valor de consumo: "))
-input_tarifa = int(input("Digite o valor da tarifa de consumo: "))
-input_gasto = float(input("Digite o valor unitário no período: "))
+# Dados de entrada
+input_consumo = float(input("Digite o valor de consumo: ")) #Ex.: 5.258
+input_tarifa = int(input("Digite o valor da tarifa de consumo: ")) #Ex.: 150
+input_gasto = float(input("Digite o valor unitário no período: ")) #Ex.: 0.256
 
 # Dados de entrada
-valorresultado.input['Consumo'] = input_consumo
+valorresultado.input['Consumo'] = input_consumo 
 valorresultado.input['Tarifa'] = input_tarifa
 valorresultado.input['Gasto de Energia'] = input_gasto
 
@@ -66,6 +68,7 @@ valorresultado.compute()
 print("\n")
 print ("Nível de medição: " + str(round(valorresultado.output['Resultado Final'],2)))
 
+#VERIFICANDO O RESULTADO, COM BASE NOS VALORES DE ENTRADA
 if valorresultado.output['Resultado Final'] <=13:
     print("\n")
     print("É gato!")
@@ -76,4 +79,6 @@ else:
     print("\n")
     print("Ligação suspeita")
 
+#EXIBINDO O GRÁFICO DO RESULTADO
 resultado.view(sim = valorresultado)
+
